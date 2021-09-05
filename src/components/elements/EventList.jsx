@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
 function EventList({ events }) {
 	const classes = useStyles();
 
+	// WHEN SORTED BY WEEKS RETURN NONE IF LIST EMPTY
+	// WHEN SORTED BY DAYS RETURN EMPTY LIST WITH WEEKDAY-DATE
+
 	if (events.length === 0) {
 		return (
 			<Card className={classes.card} raised>

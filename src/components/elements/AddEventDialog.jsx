@@ -22,6 +22,8 @@ function AddEventDialog({ resetState }) {
 	const [endDate, setEndDate] = useState(DateTime.now().plus({ hours: 1 }));
 	const [title, setTitle] = useState("");
 
+	// RESET STATE SO UP TO DATE DATA CAN BE FETCHED
+
 	const handleStartDateChange = (date) => {
 		setStartDate(date);
 		setEndDate(date.plus({ hours: 1 }));
