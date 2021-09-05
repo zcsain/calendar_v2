@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 // Custom
 import SignInCard from "../elements/SignInCard";
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
 	const classes = useStyles();
+	const history = useHistory();
 
 	const handleGapiInitialization = () => {
 		const { gapi } = window;
@@ -46,6 +48,9 @@ function SignIn() {
 			.signIn()
 			.then(() => {
 				console.log("Signed in with Google account");
+
+				// Redirect to Calendar page
+				history.push("/calendar");
 			});
 	};
 

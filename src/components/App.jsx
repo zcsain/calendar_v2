@@ -6,6 +6,8 @@ import history from "../history";
 // Custom components
 import SignIn from "./pages/SignIn";
 import Calendar from "./pages/Calendar";
+import ErrorBoundary from "./elements/ErrorBoundary";
+import ErrorButton from "./elements/ErrorButton";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -50,7 +52,9 @@ function App() {
 								<SignIn />
 							</Route>
 							<Route path="/calendar" exact>
-								<Calendar />
+								<ErrorBoundary>
+									<Calendar />
+								</ErrorBoundary>
 							</Route>
 							{/* Redirect all none existing routes back to roote route */}
 							<Redirect from="/" to="/" />
