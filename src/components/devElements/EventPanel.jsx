@@ -62,7 +62,7 @@ function EventPanel({ position }) {
 	});
 
 	// 7 day time frame
-	const nowDate = dateToISO(DateTime.now());
+	const nowDate = dateToISO(DateTime.now().startOf("day"));
 	const weekLaterDate = dateToISO(DateTime.now().plus({ days: 7 }));
 
 	// 30 day time frame
