@@ -7,7 +7,6 @@ import history from "../history";
 import SignIn from "./pages/SignIn";
 import Calendar from "./pages/Calendar";
 import ErrorBoundary from "./elements/ErrorBoundary";
-import ErrorButton from "./elements/ErrorButton";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
