@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DateTime } from "luxon";
+import { useHistory } from "react-router-dom";
 
 // Custom
 import FloatingButton from "./FloatingButton";
@@ -16,7 +17,8 @@ import AddIcon from "@material-ui/icons/Add";
 import Grid from "@material-ui/core/Grid";
 import { KeyboardDateTimePicker } from "@material-ui/pickers";
 
-function AddEventDialog({ resetState }) {
+function AddEventDialog({ onCalendarDataChange }) {
+	const history = useHistory();
 	const [open, setOpen] = useState(false);
 	const [startDate, setStartDate] = useState(DateTime.now());
 	const [endDate, setEndDate] = useState(DateTime.now().plus({ hours: 1 }));
@@ -57,23 +59,17 @@ function AddEventDialog({ resetState }) {
 		handleAddEvent(title, startDate, endDate);
 
 		handleClose();
-
-		if (resetState) {
-			resetState();
-		}
 	};
 
 	const handleAddEvent = (title, startTime, endTime) => {
-		console.log("Title: ", title);
-		console.log("StartTime: ", startTime.toISO());
-		console.log("EndTime: ", endTime.toISO());
-
 		const { gapi } = window;
 
 		// Check if user is still signed in, if yes add event, if no redirect to SignIn page
 		if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
-			console.log("Can't add event, user is not signed in");
-			// ADD REDIRECT TO SIGN IN PAGE HERE
+			console.log(
+				"Can't add event, user is not signed in, redirecting to sign in page"
+			);
+			history.push("/");
 		} else {
 			// Define event object
 			const event = {
@@ -95,9 +91,14 @@ function AddEventDialog({ resetState }) {
 				resource: event,
 			});
 
-			// Execute add event request
-			request.execute((event) => {
+			// Execute add event request, and update state
+			request.execute((response) => {
 				console.log("Event added");
+				const result = response.result;
+				onCalendarDataChange({
+					action: "New event added",
+					createdOn: result.created,
+				});
 			});
 		}
 	};
