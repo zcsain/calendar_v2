@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function EventList({ events }) {
+function EventList({ events, viewType }) {
 	const classes = useStyles();
 
 	// WHEN SORTED BY WEEKS RETURN NONE IF LIST EMPTY
@@ -68,6 +68,7 @@ function EventList({ events }) {
 							id={id}
 							startDate={startDateISO}
 							endDate={endDateISO}
+							viewType={viewType}
 						/>
 					);
 				})}
