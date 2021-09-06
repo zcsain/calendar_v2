@@ -7,7 +7,6 @@ import history from "../history";
 import SignIn from "./pages/SignIn";
 import Calendar from "./pages/Calendar";
 import ErrorBoundary from "./elements/ErrorBoundary";
-import TestPage from "./devElements/TestPage";
 
 // Material UI
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -55,9 +54,6 @@ function App() {
 								<ErrorBoundary>
 									<Calendar />
 								</ErrorBoundary>
-							</Route>
-							<Route path="/test" exact>
-								<TestPage />
 							</Route>
 							{/* Redirect all none existing routes back to roote route */}
 							<Redirect from="/" to="/" />

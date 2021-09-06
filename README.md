@@ -19,6 +19,10 @@
 - Ability to add new events
 - Ability to delete existing events
 
+# Demonstration
+
+[![app demo](http://img.youtube.com/vi/AbRKOL_9iP0/0.jpg)](http://www.youtube.com/watch?v=AbRKOL_9iP0 "App demo")
+
 ## Technologies
 
 Project is created with:
