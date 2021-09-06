@@ -98,8 +98,10 @@ function Calendar() {
 
 		return () => {
 			// Sign out when calendar unmounts
-			window.gapi.auth2.getAuthInstance().signOut();
-			console.log("User signed out");
+			if (window.gapi.auth2) {
+				window.gapi.auth2.getAuthInstance().signOut();
+				console.log("User signed out");
+			}
 		};
 	}, []);
 
