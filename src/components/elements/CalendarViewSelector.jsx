@@ -14,7 +14,7 @@ function CalendarViewSelector({ setSelectedViewType }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [selectedView, setSelectedView] = useState(1);
 	const viewTypeNames = ["1 day", "7 days", "30 days"];
-	const viwTypeCodes = [1, 7, 52];
+	const viwTypeCodes = [1, 7, 30];
 
 	// Handles menu clicks
 	const handleClick = (event) => {

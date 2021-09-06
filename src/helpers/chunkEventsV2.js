@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 const chunkToDay = (rawEvets) => {
 	const startDate = DateTime.now().startOf("day");
 
-	return { date: startDate.toISO(), events: rawEvets };
+	return [{ date: startDate.toISO(), events: rawEvets }];
 };
 
 // Chunks a list of events into days, starting from today
@@ -68,7 +68,7 @@ const chunkToWeeks = (rawEvets) => {
 /**
  *
  * @param {array} rawEvets Array of Google Calendar events (ordered by start time)
- * @param {number} viewType Type of view that is selected (1, 7, 52) is equivalent to (1, 7, 30) days
+ * @param {number} viewType Type of view that is selected (1, 7, 30) is equivalent to (1, 7, 30) days
  * @returns Array of objects chunked into days (or weeks), conatining start date of day (or week) and events belonging to that day (or week)
  */
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { DateTime } from "luxon";
 
 // Helpers
 import isoToTime24Simple from "../../helpers/isoToTime24Simple";
@@ -10,7 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-function Event({ title, id, startDate, endDate }) {
+function Event({ title, id, startDate, endDate, viewType = 7 }) {
 	const startTime = isoToTime24Simple(startDate);
 	const endTime = isoToTime24Simple(endDate);
 
@@ -30,7 +31,23 @@ function Event({ title, id, startDate, endDate }) {
 
 	return (
 		<ListItem>
-			<ListItemText primary={title} secondary={startTime + " - " + endTime} />
+			{/* <ListItemText primary={title} secondary={startTime + " - " + endTime} /> */}
+			<ListItemText
+				primary={title}
+				secondary={
+					<React.Fragment>
+						{viewType === 30 ? (
+							<ListItemText
+								secondary={DateTime.fromISO(startDate).toFormat("ccc, DD, ")}
+							/>
+						) : (
+							false
+						)}
+
+						<ListItemText secondary={startTime + " - " + endTime} />
+					</React.Fragment>
+				}
+			/>
 			<ListItemSecondaryAction>
 				<IconButton
 					edge="end"
