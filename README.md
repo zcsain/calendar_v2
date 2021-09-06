@@ -9,6 +9,34 @@
 
 4. Run the app in development mode: `npm start`
 
+# Features
+
+- Sign in with Google account to view Google calendar
+- Display events from calendar in a simple list for 1, 7 or 30 following days
+- Events are sorted into days in 1 and 7 view type, events are sorted into weeks in 30 days view type
+- Events are sorted by time
+- Events display: event title, envent start time, event end time
+- Ability to add new events
+- Ability to delete existing events
+
+## Technologies
+
+Project is created with:
+
+- Core:
+  - [ReactJS](https://reactjs.org/)
+  - [React Router](https://reactrouter.com/)
+- Styling:
+  - [Material UI](https://material-ui.com/)
+  - [Material Pickers](https://material-ui-pickers.dev/)
+- Date time:
+  - [Luxon](https://moment.github.io/luxon/)
+- APIs:
+  - [Google Calendar API](https://developers.google.com/calendar/)
+- Tools:
+  - [Google Chrome](https://www.google.com/chrome/)
+  - [VS Code](https://code.visualstudio.com/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
