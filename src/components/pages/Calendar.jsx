@@ -10,11 +10,6 @@ import chunkEventsV2 from "../../helpers/chunkEventsV2";
 import EventListV2 from "../elements/EventListV2";
 import Backdrop from "../elements/Backdrop";
 
-// Testing
-import EventList from "../elements/EventList";
-import eventList from "../../mockdata/eventList";
-import chunkedList7 from "../../mockdata/chunkedList7";
-
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -32,6 +27,7 @@ function Calendar() {
 	const [selectedViewType, setSelectedViewType] = useState(7);
 	const [calendarData, setCalendarData] = useState([]);
 	const [chunkedCalendarData, setChunkedCalendarData] = useState([]);
+	const [calendarDataChanged, setCalendarDataChanged] = useState("");
 
 	// Get Events from calendar
 	const getEventList = (startDate, endDate, updateState) => {
@@ -109,10 +105,13 @@ function Calendar() {
 
 	// useEffect are called in the order they appear in code (just like state)
 	// so order is important
+
+	// Fetch new calendar data when the selected view type changed, and
+	// fetch new calendar data when an event has been deleted or a new event has been added
 	useEffect(() => {
 		handleEventFetch();
 		console.log("Fetching events");
-	}, [selectedViewType]);
+	}, [selectedViewType, calendarDataChanged]);
 
 	useEffect(() => {
 		const chunked = chunkEventsV2(calendarData, selectedViewType);
@@ -141,7 +140,7 @@ function Calendar() {
 						</Grid>
 					</Container>
 					<CalendarViewSelector setSelectedViewType={setSelectedViewType} />
-					<AddEventDialog />
+					<AddEventDialog onCalendarDataChange={setCalendarDataChanged} />
 				</React.Fragment>
 			)}
 		</React.Fragment>
