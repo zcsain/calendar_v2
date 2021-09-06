@@ -14,6 +14,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 function Event({ title, id, startDate, endDate, viewType = 7 }) {
 	const startTime = isoToTime24Simple(startDate);
 	const endTime = isoToTime24Simple(endDate);
+	const weekAddition =
+		viewType === 30 ? DateTime.fromISO(startDate).toFormat("ccc, DD, ") : "";
 
 	const handleDelete = (id) => {
 		window.gapi.client.calendar.events
@@ -31,22 +33,9 @@ function Event({ title, id, startDate, endDate, viewType = 7 }) {
 
 	return (
 		<ListItem>
-			{/* <ListItemText primary={title} secondary={startTime + " - " + endTime} /> */}
 			<ListItemText
 				primary={title}
-				secondary={
-					<React.Fragment>
-						{viewType === 30 ? (
-							<ListItemText
-								secondary={DateTime.fromISO(startDate).toFormat("ccc, DD, ")}
-							/>
-						) : (
-							false
-						)}
-
-						<ListItemText secondary={startTime + " - " + endTime} />
-					</React.Fragment>
-				}
+				secondary={weekAddition + startTime + " - " + endTime}
 			/>
 			<ListItemSecondaryAction>
 				<IconButton
