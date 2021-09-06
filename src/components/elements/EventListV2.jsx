@@ -29,14 +29,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function EventListV2({ chunk, viewType }) {
+function EventListV2({ chunk, viewType, onCalendarDataChange }) {
 	const classes = useStyles();
 	const { date, events } = chunk;
 	let listTitle;
-
-	// console.log("EventListV2 date: ", date);
-	// console.log("EventListV2 events: ", events);
-	// console.log("EventListV2 viewType: ", viewType);
 
 	if (viewType === 1 || viewType === 7) {
 		listTitle = DateTime.fromISO(date).toFormat("cccc, DD");
@@ -65,6 +61,7 @@ function EventListV2({ chunk, viewType }) {
 									startDate={startDateISO}
 									endDate={endDateISO}
 									viewType={viewType}
+									onCalendarDataChange={onCalendarDataChange}
 								/>
 							);
 					  })}

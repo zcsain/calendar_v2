@@ -97,9 +97,9 @@ function Calendar() {
 		}
 
 		return () => {
-			// SIGN OUT USER
-			console.log("User signed out (not really)");
-			// IF THIS IS USED, useEffect SHOULD ONLY RUN ONCE -> []
+			// Sign out when calendar unmounts
+			window.gapi.auth2.getAuthInstance().signOut();
+			console.log("User signed out");
 		};
 	}, []);
 
@@ -133,7 +133,11 @@ function Calendar() {
 							{chunkedCalendarData.map((chunk) => {
 								return (
 									<Grid key={chunk.date} item xs={12} sm={6} md={4} lg={3}>
-										<EventListV2 chunk={chunk} viewType={selectedViewType} />
+										<EventListV2
+											chunk={chunk}
+											viewType={selectedViewType}
+											onCalendarDataChange={setCalendarDataChanged}
+										/>
 									</Grid>
 								);
 							})}
